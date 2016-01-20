@@ -23,7 +23,8 @@ var app = express();
 var http = require('http');
 var server = http.Server(app);
 var io = require('socket.io')(server);
-server.listen(3000);
+var port = process.env.PORT || 5000;
+server.listen(port);
 io.on('connection', function(socket) {
     socket.on('new_status', function(status) {
         var newFeed = {'status':status};
