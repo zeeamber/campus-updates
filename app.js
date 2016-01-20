@@ -22,6 +22,7 @@ var auth = require('./routes/auth');
 var app = express();
 var http = require('http');
 var server = http.Server(app);
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 var io = require('socket.io')(server);
 server.listen(3000);
 io.on('connection', function(socket) {
