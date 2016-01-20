@@ -22,9 +22,10 @@ var auth = require('./routes/auth');
 var app = express();
 var http = require('http');
 var server = http.Server(app);
-var io = require('socket.io')(server, {
-  serveClient: (app.get('env') === 'development') ? true : false,
-  path: '/socket.io'
+var io = require('socket.io')(server);
+io.configure(function () {  
+  io.set("transports", ["xhr-polling"]); 
+  io.set("polling duration", 10); 
 });
 server.listen(3000);
 io.on('connection', function(socket) {
