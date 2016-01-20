@@ -23,7 +23,7 @@ var app = express();
 var http = require('http');
 var server = http.Server(app);
 var io = require('socket.io')(server, {
-  serveClient: (config.env === 'production') ? false : true,
+  serveClient: (app.get('env') === 'development') ? true : false,
   path: '/socket.io'
 });
 server.listen(3000);
