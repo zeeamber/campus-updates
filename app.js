@@ -23,10 +23,9 @@ var app = express();
 var http = require('http');
 var server = http.Server(app);
 var io = require('socket.io')(server);
-//server.listen(process.env.PORT || 3000);
+server.listen(3000);
 io.on('connection', function(socket) {
     socket.on('new_status', function(status) {
-        console.log(status);
         var newFeed = {'status':status};
         var Feed = mongoose.model('Feed');
         var feed = new Feed(newFeed);
