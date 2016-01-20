@@ -2,7 +2,6 @@ var express = require('express');
 var passport = require('passport');
 var router = express.Router();
 var mongoose = require('mongoose');
-var GoogleAuth = require('google-auth-library');
 
 var OAUTH_CLIENT_ID = "346943952450-9gkebnelig963295fq784v6pm8jlg462.apps.googleusercontent.com";
 var OAUTH_CLIENT_SECRET = "ZDWdkqhjJsksKzwnjHyzQuok";
