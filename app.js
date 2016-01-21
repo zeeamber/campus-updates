@@ -23,7 +23,7 @@ var app = express();
 var http = require('http');
 var server = http.Server(app);
 var io = require('socket.io')(server);
-http.listen(8080);
+http.listen(8080, 'http://campus_updates.herokuapp.com');
 server.listen(port);
 io.on('connection', function(socket) {
     socket.on('new_status', function(status) {
