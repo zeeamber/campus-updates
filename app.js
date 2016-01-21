@@ -24,7 +24,9 @@ var http = require('http');
 var server = http.Server(app);
 var io = require('socket.io').listen(server);
 //var port = 8080;
-http.listen(8080);
+http.listen(8080,function(){
+    c//onsole.log('listening on *:3000'+__dirname);
+});
 io.on('connection', function(socket) {
     socket.on('new_status', function(status) {
         var newFeed = {'status':status};
