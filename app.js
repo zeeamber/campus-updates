@@ -21,10 +21,10 @@ var auth = require('./routes/auth');
 
 var app = express();
 var http = require('http');
-var server = http.createServer(app);
+var server = http.Server(app);
 var io = require('socket.io').listen(server);
-//var port = 8080;
-server.listen(3001);
+server.listen(3000);
+io.set('transports', ['websocket', 'flashsocket', 'htmlfile', 'xhr-polling', 'jsonp-polling']);
 io.on('connection', function(socket) {
     socket.on('new_status', function(status) {
         var newFeed = {'status':status};
