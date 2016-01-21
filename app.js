@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var util = require('util');
+var WebSocketServer = require("ws").Server
 
 var mongoose = require('mongoose');
 require('./models/feeds');
@@ -22,18 +23,21 @@ var auth = require('./routes/auth');
 var app = express();
 var http = require('http');
 var server = http.Server(app);
-var io = require('socket.io')(server);
 var port = 5000;
 server.listen(port);
-io.on('connection', function(socket) {
-    socket.on('new_status', function(status) {
-        var newFeed = {'status':status};
-        var Feed = mongoose.model('Feed');
-        var feed = new Feed(newFeed);
-        feed.save();
-        socket.emit('new_update', status);
-    });
-});
+var wss = new WebSocketServer({server: server})
+wss.on("connection", function(ws) {
+  var id = setInterval(function() {
+    ws.send(JSON.stringify(new Date()), function() {  })
+  }, 1000)
+
+  console.log("websocket connection open")
+
+  ws.on("close", function() {
+    console.log("websocket connection close")
+    clearInterval(id)
+  })
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
