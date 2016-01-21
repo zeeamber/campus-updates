@@ -21,10 +21,9 @@ var auth = require('./routes/auth');
 
 var app = express();
 var http = require('http');
-var server = http.Server(app);
+var server = http.createServer(app);
 var io = require('socket.io').listen(server);
-server.listen(3000);
-io.set('transports', ['websocket', 'flashsocket', 'htmlfile', 'xhr-polling', 'jsonp-polling']);
+http.listen(3000);
 io.on('connection', function(socket) {
     socket.on('new_status', function(status) {
         var newFeed = {'status':status};
