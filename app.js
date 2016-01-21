@@ -22,8 +22,8 @@ var auth = require('./routes/auth');
 var app = express();
 var http = require('http');
 var server = http.Server(app);
-var io = require('socket.io')(server);
-http.listen(8080, 'http://campus_updates.herokuapp.com');
+var io = require('socket.io').listen(server);
+var port = process.env.PORT || 8080;
 server.listen(port);
 io.on('connection', function(socket) {
     socket.on('new_status', function(status) {
