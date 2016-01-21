@@ -17,7 +17,7 @@
     "passport-google-id-token": "^0.4.0",
     "passport-google-oauth": "^0.2.0",
     "serve-favicon": "~2.3.0",
-    "ws": "0.4.x"
+    "socket.io": "^1.4.4"
   },
   "engines": {
     "node": "5.4.1"
